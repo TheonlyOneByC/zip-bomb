@@ -11,7 +11,7 @@ def zipbomb(
     if data < 0 or step_size <= 0:
         raise ValueError("data must be >= 0 and step_size must be > 0")
 
-    if mode.lower().split() not in ("repetitive", "random"):
+    if mode.lower() not in ("repetitive", "random"):
         raise ValueError(f"Zipbomb error unknown mode at -> {mode}")
 
     with zipfile.ZipFile(
@@ -23,7 +23,7 @@ def zipbomb(
             while remaining > 0:
                 size = min(step_size, remaining)
 
-                if mode.lower().split()== "repetitive":
+                if mode.lower() == "repetitive":
                     chunk = b"\x00" * size
                 else:
                     chunk = os.urandom(size)
